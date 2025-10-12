@@ -88,7 +88,7 @@ f1-run-full-pipeline-with-drop:
 	Write-Output "============================================================"
 	Write-Output "💾 Creating backup of database: ${env:DB_NAME}..."
 	Write-Output "============================================================"
-	pg_dump ${env:DB_URL_TARGET} > backup_${env:DB_NAME}.sql
+	pg_dump ${env:DB_URL_TARGET} > "./backups/backup_${env:DB_NAME}.sql"
 	#pg_dump ${env:DB_URL_TARGET} > backup_${env:DB_NAME}_$(Get-Date -Format "yyyyMMdd_HHmmss").sql
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
@@ -138,7 +138,7 @@ f4-restore-from-backup:
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 	# Restore from the most recent backup file (adjust filename if needed)
-	psql ${env:DB_URL_TARGET} -f "backup_${env:DB_NAME}_latest.sql"
+	psql ${env:DB_URL_TARGET} -f "./backups/backup_${env:DB_NAME}_latest.sql"
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 	Write-Output "============================================================"
@@ -154,7 +154,7 @@ f5-restore-from-backup-no-drop:
 	Write-Output "============================================================"
 
 	# Restore from the most recent backup file (adjust filename if needed)
-	psql ${env:DB_URL_TARGET} -f "backup_my_localdb.sql"
+	psql ${env:DB_URL_TARGET} -f "./backups/backup_my_localdb.sql"
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 	Write-Output "============================================================"
