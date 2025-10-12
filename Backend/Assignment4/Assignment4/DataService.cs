@@ -10,7 +10,6 @@ namespace Assignment4
 {
     public class DataService
     {
-
         //SOME DTO's
         
         public List<Category> GetCategories()
@@ -21,14 +20,6 @@ namespace Assignment4
         }
         
         
-        [Fact]
-        public void GetAllCategories_NoArgument_ReturnsAllCategories()
-        {
-            var service = new DataService();
-            var categories = service.GetCategories();
-            Assert.Equal(8, categories.Count);
-            Assert.Equal("Beverages", categories.First().Name);
-        }
     }
 
     public interface IEntity;
