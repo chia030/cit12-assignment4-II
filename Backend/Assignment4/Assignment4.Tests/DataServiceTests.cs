@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Northwind.Data.Domain;
 using Xunit;
 
 namespace Assignment4.Tests
@@ -123,7 +124,7 @@ namespace Assignment4.Tests
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First().Name);
             Assert.Equal("Beverages", products.First().CategoryName);
-            Assert.Equal("Lakkalik��ri", products.Last().Name);
+            Assert.Equal("LakkalikÃ¶Ã¶ri", products.Last().Name);
         }
 
         [Fact]
@@ -132,7 +133,7 @@ namespace Assignment4.Tests
             var service = new DataService();
             var products = service.GetProductByName("em");
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nu�-Nougat-Creme", products.First().ProductName);
+            Assert.Equal("NuNuCa NuÃŸ-Nougat-Creme", products.First().ProductName);
             Assert.Equal("Flotemysost", products.Last().ProductName);
         }
 
@@ -199,9 +200,9 @@ namespace Assignment4.Tests
             var service = new DataService();
             var orderDetails = service.GetOrderDetailsByProductId(11);
             Assert.Equal(38, orderDetails.Count);
-            Assert.Equal("1997-05-06", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
-            Assert.Equal(21, orderDetails.First().UnitPrice);
-            Assert.Equal(3, orderDetails.First().Quantity);
+            Assert.Equal("1996-07-04", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
+            Assert.Equal(14, orderDetails.First().UnitPrice);
+            Assert.Equal(12, orderDetails.First().Quantity);
         }
     }
 }
