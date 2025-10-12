@@ -1,0 +1,1 @@
+\i ./db/university_large.sql
