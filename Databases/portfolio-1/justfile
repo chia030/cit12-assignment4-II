@@ -126,7 +126,7 @@ alias f4 := f4-restore-from-backup
 [doc]
 f4-restore-from-backup:
 	Write-Output "============================================================"
-	Write-Output "💾 Restoring database ${env:DB_NAME} from backup.sql..."
+	Write-Output "💾 Restoring database ${env:DB_NAME} from backup_${env:DB_NAME}.sql..."
 	Write-Output "============================================================"
 
 	# Drop DB if exists
@@ -138,7 +138,7 @@ f4-restore-from-backup:
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 	# Restore from the most recent backup file (adjust filename if needed)
-	psql ${env:DB_URL_TARGET} -f "./backups/backup_${env:DB_NAME}_latest.sql"
+	psql ${env:DB_URL_TARGET} -f "./backups/backup_${env:DB_NAME}.sql"
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 	Write-Output "============================================================"
@@ -150,11 +150,11 @@ alias f5 := f5-restore-from-backup-no-drop
 [doc]
 f5-restore-from-backup-no-drop:
 	Write-Output "============================================================"
-	Write-Output "💾 Restoring database ${env:DB_NAME} from backup_my_localdb.sql..."
+	Write-Output "💾 Restoring database ${env:DB_NAME} from backup_${env:DB_NAME}.sql..."
 	Write-Output "============================================================"
 
 	# Restore from the most recent backup file (adjust filename if needed)
-	psql ${env:DB_URL_TARGET} -f "./backups/backup_my_localdb.sql"
+	psql ${env:DB_URL_TARGET} -f "./backups/backup_${env:DB_NAME}.sql"
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 	Write-Output "============================================================"
