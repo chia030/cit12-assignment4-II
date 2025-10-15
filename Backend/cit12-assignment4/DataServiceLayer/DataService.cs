@@ -141,7 +141,7 @@ public class DataService
     public Order? GetOrder(int id)
     {
         return _context.Orders
-            .Include(o => o.OrderDetails)
+            .Include(o => o.OrderDetails!)
                 .ThenInclude(od => od.Product)
                     .ThenInclude(p => p.Category)
             .AsNoTracking()
