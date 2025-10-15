@@ -1,6 +1,9 @@
 @cit12_assignment4_HostAddress = http://localhost:5017
 
-GET {{cit12_assignment4_HostAddress}}/weatherforecast/
+GET {{cit12_assignment4_HostAddress}}/weatherforecastMinimalExample/
 Accept: application/json
 
 ###
+
+GET {{cit12_assignment4_HostAddress}}/WeatherForecast/GetWeatherForecastControllerExample/
+Accept: application/json

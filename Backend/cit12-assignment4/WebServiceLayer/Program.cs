@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +41,7 @@ app.MapGet("/weatherforecastMinimalExample", () =>
 
 app.MapControllers();
 app.UseSwagger();
+app.UseCors();
 app.Run();
 
 [ApiController]
