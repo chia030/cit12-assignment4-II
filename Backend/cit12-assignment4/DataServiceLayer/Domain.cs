@@ -32,7 +32,7 @@ public class OrderDetails : IEntity
     public Product Product { get; set; } = null!;
 
     public double UnitPrice { get; set; }
-    public double Quantity { get; set; }
+    public int Quantity { get; set; }
     public double Discount { get; set; }
 }
 

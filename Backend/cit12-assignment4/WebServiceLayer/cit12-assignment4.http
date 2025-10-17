@@ -1,9 +1,96 @@
 @cit12_assignment4_HostAddress = http://localhost:5017
+@contentType = application/json
 
-GET {{cit12_assignment4_HostAddress}}/weatherforecastMinimalExample/
-Accept: application/json
+### Get all categories
+GET {{cit12_assignment4_HostAddress}}/api/northwind/categories
+Accept: {{contentType}}
 
-###
+### Get single category by ID
+GET {{cit12_assignment4_HostAddress}}/api/northwind/categories/1
+Accept: {{contentType}}
 
-GET {{cit12_assignment4_HostAddress}}/WeatherForecast/GetWeatherForecastControllerExample/
-Accept: application/json
+### Create a new category
+POST {{cit12_assignment4_HostAddress}}/api/northwind/categories
+Content-Type: {{contentType}}
+
+{
+  "name": "Test Category",
+  "description": "This is a test category"
+}
+
+### Update a category by ID
+PUT {{cit12_assignment4_HostAddress}}/api/northwind/categories/1
+Content-Type: {{contentType}}
+
+{
+  "name": "Updated Category Name",
+  "description": "Updated Description"
+}
+
+### Delete a category by ID
+DELETE {{cit12_assignment4_HostAddress}}/api/northwind/categories/1
+
+### Get product by ID
+GET {{cit12_assignment4_HostAddress}}/api/northwind/products/1
+Accept: {{contentType}}
+
+### Get products by category ID
+GET {{cit12_assignment4_HostAddress}}/api/northwind/products/by-category/1
+Accept: {{contentType}}
+
+### Search products by name (substring)
+GET {{cit12_assignment4_HostAddress}}/api/northwind/products/search?name=ch
+Accept: {{contentType}}
+
+### Create a new product
+POST {{cit12_assignment4_HostAddress}}/api/northwind/products
+Content-Type: {{contentType}}
+
+{
+  "name": "Test Product",
+  "unitPrice": 9.99,
+  "quantityPerUnit": "1 box",
+  "unitsInStock": 42,
+  "categoryId": 1
+}
+
+### Get all orders
+GET {{cit12_assignment4_HostAddress}}/api/northwind/orders
+Accept: {{contentType}}
+
+### Get single order by ID
+GET {{cit12_assignment4_HostAddress}}/api/northwind/orders/10248
+Accept: {{contentType}}
+
+### Create new order
+POST {{cit12_assignment4_HostAddress}}/api/northwind/orders
+Content-Type: {{contentType}}
+
+{
+  "date": "2025-10-17T00:00:00",
+  "required": "2025-10-22T00:00:00",
+  "shipped": "2025-10-19T00:00:00",
+  "freight": 42.00,
+  "shipName": "Test Ship Name",
+  "shipCity": "Test City"
+}
+
+### Get order details by order ID
+GET {{cit12_assignment4_HostAddress}}/api/northwind/orders/10248/details
+Accept: {{contentType}}
+
+### Get order details by product ID
+GET {{cit12_assignment4_HostAddress}}/api/northwind/products/1/order-details
+Accept: {{contentType}}
+
+### Create order details
+POST {{cit12_assignment4_HostAddress}}/api/northwind/order-details
+Content-Type: {{contentType}}
+
+{
+  "orderId": 10248,
+  "productId": 1,
+  "unitPrice": 14.00,
+  "quantity": 5,
+  "discount": 0.1
+}

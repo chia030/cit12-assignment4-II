@@ -119,7 +119,7 @@ public class DataService
             .ToList();
     }
 
-    public Product CreateProduct(string name, float unitPrice, string? quantityPerUnit, int unitsInStock, int categoryId)
+    public Product CreateProduct(string name, float unitPrice, string? quantityPerUnit, int unitsInStock, int? categoryId)
     {
         var product = new Product
         {
@@ -156,7 +156,7 @@ public class DataService
             .ToList();
     }
 
-    public Order CreateOrder(DateTime orderDate, DateTime requiredDate, DateTime shippedDate, float freight, string shipName, string shipCity)
+    public Order CreateOrder(DateTime orderDate, DateTime requiredDate, DateTime? shippedDate, double freight, string shipName, string shipCity)
     {
         var order = new Order
         {
@@ -198,7 +198,7 @@ public class DataService
             .ToList();
     }
 
-    public OrderDetails CreateOrderDetails(int orderId, int productId, float unitPrice, short quantity, float discount)
+    public OrderDetails CreateOrderDetails(int orderId, int productId, float unitPrice, int quantity, double discount)
     {
         var orderDetails = new OrderDetails
         {
