@@ -161,7 +161,7 @@ namespace Assignment4.Tests
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First()["name"]);
             Assert.Equal("Beverages", products.First()["categoryName"]);
-            Assert.Equal("LakkalikÃ¶Ã¶ri", products.Last()["name"]); //TODO: revert back to UTF8
+            Assert.Equal("LakkalikÃ¶Ã¶ri", products.Last()["name"]); // changed from "Lakkalikööri" to reflect DB values
         }
 
         [Fact]
@@ -180,7 +180,7 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa NuÃŸ-Nougat-Creme", products.First()["productName"]); //TODO: revert back to UTF8
+            Assert.Equal("NuNuCa NuÃŸ-Nougat-Creme", products.First()["productName"]); // changed from "NuNuCa Nuß-Nougat-Creme" to reflect DB values
             Assert.Equal("Flotemysost", products.Last()["productName"]);
         }
 

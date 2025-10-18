@@ -2,6 +2,7 @@ using DataServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 using WebServiceLayer.DTOs;
 
+
 namespace WebServiceLayer.Controllers;
 
 [ApiController]
@@ -21,8 +22,8 @@ public class ProductsController : ControllerBase
         {
             Id = product.Id,
             Name = product.Name,
-            UnitPrice = product.UnitPrice, // not needed here
-            UnitsInStock = product.UnitsInStock, // not needed here
+            UnitPrice = product.UnitPrice, // not really needed here
+            UnitsInStock = product.UnitsInStock, // not really needed here
             Category = new CategoryDTO
             {
                 Id = product.Category.Id,
