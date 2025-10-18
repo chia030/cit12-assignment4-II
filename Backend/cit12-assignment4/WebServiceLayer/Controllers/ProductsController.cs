@@ -1,5 +1,6 @@
 using DataServiceLayer;
 using Microsoft.AspNetCore.Mvc;
+using WebServiceLayer.DTOs;
 
 namespace WebServiceLayer.Controllers;
 
@@ -16,20 +17,21 @@ public class ProductsController : ControllerBase
         if (product == null)
             return NotFound();
 
-        var result = new
+        var dto = new ProductDetailDTO
         {
-            id = product.Id,
-            name = product.Name,
-            unitPrice = product.UnitPrice,
-            unitsInStock = product.UnitsInStock,
-            category = new
+            Id = product.Id,
+            Name = product.Name,
+            UnitPrice = product.UnitPrice, // not needed here
+            UnitsInStock = product.UnitsInStock, // not needed here
+            Category = new CategoryDTO
             {
-                id = product.Category.Id,
-                name = product.Category.Name
+                Id = product.Category.Id,
+                Name = product.Category.Name,
+                Description = product.Category.Description
             }
         };
 
-        return Ok(result);
+        return Ok(dto);
     }
 
     [HttpGet("category/{categoryId:int}")]
@@ -38,7 +40,15 @@ public class ProductsController : ControllerBase
         var products = _service.GetProductByCategory(categoryId);
         if (products == null || !products.Any())
             return NotFound(products);
-        return Ok(products);
+
+        var dtos = products.Select(p => new ProductDTO
+        {
+            Id = p.Id,
+            Name = p.Name,
+            CategoryName = p.CategoryName
+        });
+
+        return Ok(dtos);
     }
 
     [HttpGet("name/{substring}")]
@@ -47,6 +57,7 @@ public class ProductsController : ControllerBase
         var products = _service.GetProductByName(substring);
         if (products == null || !products.Any())
             return NotFound(products);
+
         return Ok(products);
     }
 }

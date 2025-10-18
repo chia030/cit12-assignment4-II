@@ -1,4 +1,5 @@
 using DataServiceLayer;
+using WebServiceLayer.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebServiceLayer.Controllers;
@@ -15,7 +16,16 @@ public class CategoriesController : ControllerBase
         var categories = _service.GetCategories();
         if (categories == null || !categories.Any())
             return NotFound();
-        return Ok(categories);
+
+        // TODO: find a way to map their attributes automatically
+        var dtos = categories.Select(c => new CategoryDTO
+        {
+            Id = c.Id,
+            Name = c.Name,
+            Description = c.Description
+        });
+
+        return Ok(dtos);
     }
 
     [HttpGet("{id:int}")]
@@ -24,31 +34,57 @@ public class CategoriesController : ControllerBase
         var category = _service.GetCategory(id);
         if (category == null)
             return NotFound();
-        return Ok(category);
+
+        var dto = new CategoryDTO
+        {
+            Id = category.Id,
+            Name = category.Name,
+            Description = category.Description
+        };
+
+        return Ok(dto);
     }
 
     [HttpPost]
-    public IActionResult CreateCategory(Category category)
+    // public IActionResult CreateCategory(Category category)
+    public IActionResult CreateCategory([FromBody] CategoryDTO categoryDto)
     {
-        var created = _service.CreateCategory(category.Name, category.Description);
-        return CreatedAtAction(nameof(GetCategory), new { id = created.Id }, created);
+        // var created = _service.CreateCategory(category.Name, category.Description);
+        // return CreatedAtAction(nameof(GetCategory), new { id = created.Id }, created);
+        var created = _service.CreateCategory(categoryDto.Name, categoryDto.Description);
+
+        var dto = new CategoryDTO
+        {
+            Id = created.Id,
+            Name = created.Name,
+            Description = created.Description
+        };
+
+        return CreatedAtAction(nameof(GetCategory), new { id = dto.Id }, dto);
     }
 
     [HttpPut("{id:int}")]
-    public IActionResult Update(int id, Category category)
+    // public IActionResult Update(int id, Category category)
+    public IActionResult UpdateCategory(int id, [FromBody] CategoryDTO categoryDto)
     {
-        var success = _service.UpdateCategory(id, category.Name, category.Description);
-        if (!success)
+        // var success = _service.UpdateCategory(id, category.Name, category.Description);
+        // if (!success)
+        //     return NotFound();
+        // return Ok();
+        var updated = _service.UpdateCategory(id, categoryDto.Name, categoryDto.Description);
+        if (!updated)
             return NotFound();
+
         return Ok();
     }
 
     [HttpDelete("{id:int}")]
     public IActionResult Delete(int id)
     {
-        var success = _service.DeleteCategory(id);
-        if (!success)
+        var deleted = _service.DeleteCategory(id);
+        if (!deleted)
             return NotFound();
+
         return Ok();
     }
 }
