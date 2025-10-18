@@ -84,7 +84,7 @@ public class DataService
     {
         return _context.Products
             .Include(p => p.Category)
-            .AsNoTracking()
+            // .AsNoTracking()
             .FirstOrDefault(p => p.Id == id);
     }
 

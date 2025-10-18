@@ -1,16 +1,16 @@
-@cit12_assignment4_HostAddress = http://localhost:5017
+@WebServiceLayer_HostAddress = http://localhost:5001
 @contentType = application/json
 
 ### Get all categories
-GET {{cit12_assignment4_HostAddress}}/api/northwind/categories
+GET {{WebServiceLayer_HostAddress}}/api/northwind/categories
 Accept: {{contentType}}
 
 ### Get single category by ID
-GET {{cit12_assignment4_HostAddress}}/api/northwind/categories/1
+GET {{WebServiceLayer_HostAddress}}/api/northwind/categories/1
 Accept: {{contentType}}
 
 ### Create a new category
-POST {{cit12_assignment4_HostAddress}}/api/northwind/categories
+POST {{WebServiceLayer_HostAddress}}/api/northwind/categories
 Content-Type: {{contentType}}
 
 {
@@ -19,7 +19,7 @@ Content-Type: {{contentType}}
 }
 
 ### Update a category by ID
-PUT {{cit12_assignment4_HostAddress}}/api/northwind/categories/1
+PUT {{WebServiceLayer_HostAddress}}/api/northwind/categories/1
 Content-Type: {{contentType}}
 
 {
@@ -28,22 +28,22 @@ Content-Type: {{contentType}}
 }
 
 ### Delete a category by ID
-DELETE {{cit12_assignment4_HostAddress}}/api/northwind/categories/1
+DELETE {{WebServiceLayer_HostAddress}}/api/northwind/categories/1
 
 ### Get product by ID
-GET {{cit12_assignment4_HostAddress}}/api/northwind/products/1
+GET {{WebServiceLayer_HostAddress}}/api/northwind/products/1
 Accept: {{contentType}}
 
 ### Get products by category ID
-GET {{cit12_assignment4_HostAddress}}/api/northwind/products/by-category/1
+GET {{WebServiceLayer_HostAddress}}/api/northwind/products/by-category/1
 Accept: {{contentType}}
 
 ### Search products by name (substring)
-GET {{cit12_assignment4_HostAddress}}/api/northwind/products/search?name=ch
+GET {{WebServiceLayer_HostAddress}}/api/northwind/products/search?name=ch
 Accept: {{contentType}}
 
 ### Create a new product
-POST {{cit12_assignment4_HostAddress}}/api/northwind/products
+POST {{WebServiceLayer_HostAddress}}/api/northwind/products
 Content-Type: {{contentType}}
 
 {
@@ -55,15 +55,15 @@ Content-Type: {{contentType}}
 }
 
 ### Get all orders
-GET {{cit12_assignment4_HostAddress}}/api/northwind/orders
+GET {{WebServiceLayer_HostAddress}}/api/northwind/orders
 Accept: {{contentType}}
 
 ### Get single order by ID
-GET {{cit12_assignment4_HostAddress}}/api/northwind/orders/10248
+GET {{WebServiceLayer_HostAddress}}/api/northwind/orders/10248
 Accept: {{contentType}}
 
 ### Create new order
-POST {{cit12_assignment4_HostAddress}}/api/northwind/orders
+POST {{WebServiceLayer_HostAddress}}/api/northwind/orders
 Content-Type: {{contentType}}
 
 {
@@ -76,15 +76,15 @@ Content-Type: {{contentType}}
 }
 
 ### Get order details by order ID
-GET {{cit12_assignment4_HostAddress}}/api/northwind/orders/10248/details
+GET {{WebServiceLayer_HostAddress}}/api/northwind/orders/10248/details
 Accept: {{contentType}}
 
 ### Get order details by product ID
-GET {{cit12_assignment4_HostAddress}}/api/northwind/products/1/order-details
+GET {{WebServiceLayer_HostAddress}}/api/northwind/products/1/order-details
 Accept: {{contentType}}
 
 ### Create order details
-POST {{cit12_assignment4_HostAddress}}/api/northwind/order-details
+POST {{WebServiceLayer_HostAddress}}/api/northwind/order-details
 Content-Type: {{contentType}}
 
 {
