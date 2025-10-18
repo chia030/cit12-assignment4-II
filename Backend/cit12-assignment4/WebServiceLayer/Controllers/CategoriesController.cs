@@ -46,11 +46,8 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPost]
-    // public IActionResult CreateCategory(Category category)
     public IActionResult CreateCategory([FromBody] CategoryDTO categoryDto)
     {
-        // var created = _service.CreateCategory(category.Name, category.Description);
-        // return CreatedAtAction(nameof(GetCategory), new { id = created.Id }, created);
         var created = _service.CreateCategory(categoryDto.Name, categoryDto.Description);
 
         var dto = new CategoryDTO
@@ -64,13 +61,8 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPut("{id:int}")]
-    // public IActionResult Update(int id, Category category)
     public IActionResult UpdateCategory(int id, [FromBody] CategoryDTO categoryDto)
     {
-        // var success = _service.UpdateCategory(id, category.Name, category.Description);
-        // if (!success)
-        //     return NotFound();
-        // return Ok();
         var updated = _service.UpdateCategory(id, categoryDto.Name, categoryDto.Description);
         if (!updated)
             return NotFound();
