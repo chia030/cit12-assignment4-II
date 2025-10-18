@@ -29,7 +29,7 @@ public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbCo
 
             entity.Property(e => e.Id)
                 .HasColumnName("categoryid")
-                .ValueGeneratedOnAdd(); // ✅ PostgreSQL generates ID
+                .ValueGeneratedOnAdd(); // PostgreSQL generates ID
 
             entity.Property(e => e.Name)
                 .HasColumnName("categoryname");
@@ -47,7 +47,7 @@ public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbCo
 
             entity.Property(e => e.Id)
                 .HasColumnName("productid")
-                .ValueGeneratedOnAdd(); // ✅ generated ID
+                .ValueGeneratedOnAdd(); // generated ID
 
             entity.Property(e => e.Name)
                 .HasColumnName("productname");
@@ -79,12 +79,12 @@ public class NorthwindContext(DbContextOptions<NorthwindContext> options) : DbCo
 
             entity.Property(e => e.Id)
                 .HasColumnName("orderid")
-                .ValueGeneratedOnAdd(); // ✅ generated ID
+                .ValueGeneratedOnAdd(); // generated ID
 
             entity.Property(e => e.Date)
                 .HasColumnName("orderdate");
 
-            entity.Property(e => e.Required) // ✅ property name must match your class
+            entity.Property(e => e.Required) // property name must match your class
                 .HasColumnName("requireddate");
 
             entity.Property(e => e.Shipped)
