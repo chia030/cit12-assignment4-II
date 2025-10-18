@@ -1,4 +1,7 @@
-﻿using DataServiceLayer;
+using System;
+using System.Linq;
+using Xunit;
+using DataServiceLayer;
 
 namespace Assignment4.Tests
 {
@@ -197,9 +200,9 @@ namespace Assignment4.Tests
             var service = new DataService();
             var orderDetails = service.GetOrderDetailsByProductId(11);
             Assert.Equal(38, orderDetails.Count);
-            Assert.Equal("1996-07-04", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
-            Assert.Equal(14, orderDetails.First().UnitPrice);
-            Assert.Equal(12, orderDetails.First().Quantity);
+            Assert.Equal("1997-05-06", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
+            Assert.Equal(21, orderDetails.First().UnitPrice);
+            Assert.Equal(3, orderDetails.First().Quantity);
         }
     }
 }

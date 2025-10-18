@@ -8,7 +8,6 @@ public interface IValueObject;
 
 public interface IRepository;
 
-// The test wants us to use bad practises
 public class Order : IAggregateRoot
 {
     public int Id { get; set; }
@@ -22,7 +21,6 @@ public class Order : IAggregateRoot
     public ICollection<OrderDetails>? OrderDetails { get; set; } = null;
 }
 
-// The test wants us to use bad practises
 public class OrderDetails : IEntity
 {
     public int OrderId { get; set; }

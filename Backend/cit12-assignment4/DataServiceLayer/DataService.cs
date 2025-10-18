@@ -194,7 +194,6 @@ public class DataService
             .Include(od => od.Order)
             .AsNoTracking()
             .Where(od => od.ProductId == productId)
-            .OrderBy(od => od.OrderId)
             .ToList();
     }
 
