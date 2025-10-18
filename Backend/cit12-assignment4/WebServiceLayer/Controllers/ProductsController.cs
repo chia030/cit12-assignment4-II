@@ -22,8 +22,6 @@ public class ProductsController : ControllerBase
         {
             Id = product.Id,
             Name = product.Name,
-            UnitPrice = product.UnitPrice, // not really needed here
-            UnitsInStock = product.UnitsInStock, // not really needed here
             Category = new CategoryDTO
             {
                 Id = product.Category.Id,
