@@ -1,36 +1,39 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebServiceLayer;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
-{
-    public static void Main(string[] args)
+// Add controllers and JSON support
+builder.Services.AddControllers()
+                .AddNewtonsoftJson(); // needed for JObject/JArray in tests
+
+builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddCors(options =>
     {
-        var builder = WebApplication.CreateBuilder(args);
+        options.AddPolicy("AllowAll", policy =>
+            policy.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+    });
 
-        // Add services to the container.
+var app = builder.Build();
 
-        // Add controllers and JSON support
-        builder.Services.AddControllers()
-                        .AddNewtonsoftJson(); // needed for JObject/JArray in tests
-
-        builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", policy =>
-                    policy.AllowAnyOrigin()
-                          .AllowAnyHeader()
-                          .AllowAnyMethod());
-            });
-
-        var app = builder.Build();
-
-        // Enable CORS
-        app.UseCors("AllowAll");
-
-        app.UseAuthorization();
-
-        app.MapControllers();
-
-        app.Run();
-    }
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.MapOpenApi();
 }
+
+// Enable CORS
+app.UseCors("AllowAll");
+
+app.UseAuthorization();
+
+app.MapControllers();
+app.UseSwagger();
+app.Run();
